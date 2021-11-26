@@ -22,8 +22,8 @@ const getComparison = (filePath1, filePath2) => {
         }
     }, {});
     
-    console.log(JSON.stringify(result, null, 2));
-    return JSON.stringify(result, null, 2);
+    console.log(JSON.stringify(result, null, 2).replaceAll('"', '').replaceAll(',', ''));
+    return JSON.stringify(result, null, 2).replaceAll('"', '').replaceAll(',', '');
 };
 
 export default getComparison;
