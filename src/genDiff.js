@@ -1,7 +1,7 @@
 import _ from 'lodash';
 import getData from './getData.js';
 
-const getComparison = (filePath1, filePath2) => {
+export default (filePath1, filePath2) => {
     const file1 = getData(filePath1);
     const file2 = getData(filePath2);
     const keys = _.union([...Object.keys(file1), ...Object.keys(file2)]);
@@ -25,5 +25,3 @@ const getComparison = (filePath1, filePath2) => {
     console.log(JSON.stringify(result, null, 2).replaceAll('"', '').replaceAll(',', ''));
     return JSON.stringify(result, null, 2).replaceAll('"', '').replaceAll(',', '');
 };
-
-export default getComparison;
