@@ -6,3 +6,6 @@ publish:
 
 genDiff:
 	npm link
+
+lint:
+	npx eslint .

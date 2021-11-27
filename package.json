@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Nafanya-dev/frontend-project-lvl2/workflows/hexlet-check/badge.svg)](https://github.com/Nafanya-dev/frontend-project-lvl2/actions)",
-  "main": "index.js",
+  "main": "src/genDiff.js",
   "bin": {
     "gendiff": "bin/gendiff.js"
   },
@@ -24,5 +24,12 @@
     "commander": "^8.3.0",
     "lodash": "^4.17.21",
     "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "eslint": "^8.3.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-base": "^1.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "jest": "^27.3.1"
   }
 }
