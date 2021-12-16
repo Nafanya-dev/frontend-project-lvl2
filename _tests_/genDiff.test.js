@@ -14,4 +14,4 @@ beforeAll(() => {
 
 test('genDiff', () => {
   expect(genDiff(pathFile1, pathFile2)).toEqual(correct1);
-})
+});

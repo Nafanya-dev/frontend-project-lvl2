@@ -9,3 +9,6 @@ genDiff:
 
 lint:
 	npx eslint .
+
+test:	
+	npx jest
