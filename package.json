@@ -23,7 +23,8 @@
   "dependencies": {
     "commander": "^8.3.0",
     "lodash": "^4.17.21",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "string.prototype.replaceall": "^1.0.6"
   },
   "devDependencies": {
     "@babel/plugin-transform-modules-commonjs": "^7.16.5",
@@ -31,7 +32,6 @@
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-config-base": "^1.0.0",
     "eslint-plugin-import": "^2.25.3",
-    "jest": "^27.3.1",
-    "string.prototype.replaceall": "^1.0.6"
+    "jest": "^27.3.1"
   }
 }
