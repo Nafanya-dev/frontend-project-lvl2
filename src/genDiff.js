@@ -1,5 +1,8 @@
 import _ from 'lodash';
+import replaceAllInserter from 'string.prototype.replaceall';
 import getData from './getData.js';
+
+replaceAllInserter.shim();
 
 export default (filePath1, filePath2) => {
   const file1 = getData(filePath1);
