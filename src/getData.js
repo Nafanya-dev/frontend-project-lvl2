@@ -6,7 +6,7 @@ const getData = (fileAddress) => {
   const currentDirectory = cwd();
   const absolutePath = path.resolve(currentDirectory, fileAddress);
   const data = readFileSync(absolutePath, 'utf-8');
-  return JSON.parse(data);
+  return data;
 };
 
 export default getData;
