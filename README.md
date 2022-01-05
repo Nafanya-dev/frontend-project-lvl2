@@ -13,3 +13,7 @@ https://asciinema.org/a/LIrL3x6d7N2dH9ACiViZjU4Pp
 
 ### Comparison of two flat files.yaml:
 https://asciinema.org/a/smRuKonRjSRLMMeZrQkCDlxhD
+
+### Comparison of two deep files.json or two files.yaml
+https://asciinema.org/a/GqVm9JZJlYZmv37JrWkgtUx23
+

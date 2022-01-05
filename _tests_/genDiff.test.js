@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import genDiff from '../src/genDiff.js';
+import index from '../index.js';
 import getFixturePath from '../src/getFixturePath.js';
 
 let jsPathFile1;
@@ -19,9 +19,9 @@ beforeAll(() => {
 });
 
 test('genDiff_Json', () => {
-  expect(genDiff(jsPathFile1, jsPathFile2)).toEqual(correct1);
+  expect(index(jsPathFile1, jsPathFile2)).toEqual(correct1);
 });
 
 test('genDiff_Yaml', () => {
-  expect(genDiff(ymlPathFile1, ymlPathFile2)).toEqual(correct1);
+  expect(index(ymlPathFile1, ymlPathFile2)).toEqual(correct1);
 });
