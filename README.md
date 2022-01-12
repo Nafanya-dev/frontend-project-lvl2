@@ -17,3 +17,6 @@ https://asciinema.org/a/smRuKonRjSRLMMeZrQkCDlxhD
 ### Comparison of two deep files.json or two files.yaml
 https://asciinema.org/a/GqVm9JZJlYZmv37JrWkgtUx23
 
+### Output stylish and plain format
+https://asciinema.org/a/twtVEnpGUR6Tm3PIkgMPxLbM8
+

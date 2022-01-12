@@ -1,6 +1,6 @@
 import _ from 'lodash';
 
-const genDiff = (file1, file2) => {
+const getTreeDiff = (file1, file2) => {
   const keys = _.union([...Object.keys(file1), ...Object.keys(file2)]);
   const sortKeys = _.sortBy(keys);
 
@@ -22,7 +22,7 @@ const genDiff = (file1, file2) => {
     let valueFile2;
     if (type === 'general') {
       if (typeof file1[key] === 'object' && typeof file2[key] === 'object') {
-        valueFile1 = genDiff(file1[key], file2[key]);
+        valueFile1 = getTreeDiff(file1[key], file2[key]);
       } else if (file1[key] === file2[key]) {
         valueFile1 = _.cloneDeep(file1[key]);
       } else {
@@ -34,8 +34,24 @@ const genDiff = (file1, file2) => {
       valueFile1 = type === 'deleted' ? _.cloneDeep(file1[key]) : _.cloneDeep(file2[key]);
     }
     return type === 'differ'
-      ? [...acc, { name, type: 'deleted', children: valueFile1 }, { name, type: 'added', children: valueFile2 }]
-      : [...acc, { name, type, children: valueFile1 }];
+      ? [...acc, {
+        name,
+        type: 'deleted',
+        children: valueFile1,
+        beenUpdated: true,
+      }, {
+        name,
+        type: 'added',
+        children: valueFile2,
+        beenUpdated: true,
+      }]
+      : [...acc, {
+        name,
+        type,
+        children: valueFile1,
+        beenUpdated: false,
+      }];
   }, []);
 };
-export default genDiff;
+
+export default getTreeDiff;

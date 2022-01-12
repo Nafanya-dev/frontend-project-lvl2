@@ -1,5 +1,5 @@
 import { readFileSync } from 'fs';
-import index from '../index.js';
+import genDiff from '../genDiff.js';
 import getFixturePath from '../src/getFixturePath.js';
 
 let jsPathFile1;
@@ -8,20 +8,34 @@ let jsPathFile2;
 let ymlPathFile1;
 let ymlPathFile2;
 
-let correct1;
+let correctStylish;
+let correctPlain;
 
 beforeAll(() => {
   jsPathFile1 = getFixturePath('file1.json');
   jsPathFile2 = getFixturePath('file2.json');
   ymlPathFile1 = getFixturePath('file1.yaml');
   ymlPathFile2 = getFixturePath('file2.yaml');
-  correct1 = readFileSync(getFixturePath('correct1.json'), 'utf-8');
+  correctStylish = readFileSync(getFixturePath('correctStylish.json'), 'utf-8');
+  correctPlain = readFileSync(getFixturePath('correctPlain.json'), 'utf-8');
 });
 
-test('genDiff_Json', () => {
-  expect(index(jsPathFile1, jsPathFile2)).toEqual(correct1);
+describe('stylish', () => {
+  test('genDiff_Json', () => {
+    expect(genDiff(jsPathFile1, jsPathFile2)).toEqual(correctStylish);
+  });
+
+  test('genDiff_Yaml', () => {
+    expect(genDiff(ymlPathFile1, ymlPathFile2)).toEqual(correctStylish);
+  });
 });
 
-test('genDiff_Yaml', () => {
-  expect(index(ymlPathFile1, ymlPathFile2)).toEqual(correct1);
+describe('plain', () => {
+  test('genDiff_Json', () => {
+    expect(genDiff(jsPathFile1, jsPathFile2, 'plain')).toEqual(correctPlain);
+  });
+
+  test('genDiff_Yaml', () => {
+    expect(genDiff(ymlPathFile1, ymlPathFile2, 'plain')).toEqual(correctPlain);
+  });
 });
