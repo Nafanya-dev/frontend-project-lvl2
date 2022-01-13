@@ -36,7 +36,7 @@ const json = (treeDeep) => {
       }
       return `${acc}{"name":"${file.name}","type":"notChanged","value":${value[0]}}`;
     }, '');
-  return `[${getStyle(treeDeep)}]`.split('')
+  return JSON.parse(`[${getStyle(treeDeep)}]`.split('')
     .map((char) => {
       if (char === '}') {
         closingBracket[0] = true;
@@ -46,7 +46,7 @@ const json = (treeDeep) => {
       }
       return char;
     })
-    .join('');
+    .join(''));
 };
 
 export default json;
