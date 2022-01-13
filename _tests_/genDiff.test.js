@@ -40,10 +40,10 @@ describe('json', () => {
   const ymlPathFile2 = getFixturePath('file2.yaml');
   const correctJson = readFileSync(getFixturePath('correctJson.json'), 'utf-8');
   test('genDiff_Json', () => {
-    expect(genDiff(jsPathFile1, jsPathFile2, 'json')).toEqual(parsers(correctJson, 'json'));
+    expect(genDiff(jsPathFile1, jsPathFile2, 'json')).toEqual(correctJson, 'json');
   });
 
   test('genDiff_Yaml', () => {
-    expect(genDiff(ymlPathFile1, ymlPathFile2, 'json')).toEqual(parsers(correctJson, 'yaml'));
+    expect(genDiff(ymlPathFile1, ymlPathFile2, 'json')).toEqual(correctJson, 'yaml');
   });
 });

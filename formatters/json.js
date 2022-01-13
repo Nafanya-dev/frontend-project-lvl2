@@ -21,7 +21,7 @@ const json = (treeDeep) => {
       }
       return { ...acc, [key]: [file.type, value[0]] };
     }, {});
-  return getObj(treeDeep);
+  return JSON.stringify(getObj(treeDeep));
 };
 
 export default json;
