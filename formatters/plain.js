@@ -1,3 +1,5 @@
+import _ from 'lodash';
+
 const plain = (treeDeep) => {
   let previous = null;
   const getStyle = (tree, path = '') => tree
@@ -5,7 +7,7 @@ const plain = (treeDeep) => {
       const newLine = acc === '' ? '' : '\n';
       const pathToProperty = path === '' ? file.name : `${path}.${file.name}`;
 
-      let value = typeof file.children === 'object' ? '[complex value]' : file.children;
+      let value = typeof file.children === 'object' ? '[complex value]' : _.cloneDeep(file.children);
       value = typeof file.children === 'string' && file.children !== 'null'
         ? `'${value}'`
         : value;
@@ -16,13 +18,13 @@ const plain = (treeDeep) => {
         return `${acc}${getStyle(file.children, pathToProperty)}`;
       } if (file.type === 'deleted') {
         if (file.beenUpdated) {
-          previous = file;
+          previous = _.cloneDeep(file);
           return acc;
         }
         text = 'was removed';
       } if (file.type === 'added') {
         if (file.beenUpdated) {
-          let from = typeof previous.children === 'object' ? '[complex value]' : previous.children;
+          let from = typeof previous.children === 'object' ? '[complex value]' : _.cloneDeep(previous.children);
           from = typeof previous.children === 'string' && previous.children !== 'null'
             ? `'${from}'`
             : from;

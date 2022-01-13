@@ -20,3 +20,7 @@ https://asciinema.org/a/GqVm9JZJlYZmv37JrWkgtUx23
 ### Output stylish and plain format
 https://asciinema.org/a/twtVEnpGUR6Tm3PIkgMPxLbM8
 
+### Output json format
+https://asciinema.org/a/KYgfECZAsoutY6NqbzeysuBsr
+
+

@@ -10,6 +10,7 @@ let ymlPathFile2;
 
 let correctStylish;
 let correctPlain;
+let correctJson;
 
 beforeAll(() => {
   jsPathFile1 = getFixturePath('file1.json');
@@ -18,6 +19,7 @@ beforeAll(() => {
   ymlPathFile2 = getFixturePath('file2.yaml');
   correctStylish = readFileSync(getFixturePath('correctStylish.json'), 'utf-8');
   correctPlain = readFileSync(getFixturePath('correctPlain.json'), 'utf-8');
+  correctJson = readFileSync(getFixturePath('correctJson.json'), 'utf-8');
 });
 
 describe('stylish', () => {
@@ -37,5 +39,15 @@ describe('plain', () => {
 
   test('genDiff_Yaml', () => {
     expect(genDiff(ymlPathFile1, ymlPathFile2, 'plain')).toEqual(correctPlain);
+  });
+});
+
+describe('json', () => {
+  test('genDiff_Json', () => {
+    expect(genDiff(jsPathFile1, jsPathFile2, 'json')).toEqual(correctJson);
+  });
+
+  test('genDiff_Yaml', () => {
+    expect(genDiff(ymlPathFile1, ymlPathFile2, 'json')).toEqual(correctJson);
   });
 });

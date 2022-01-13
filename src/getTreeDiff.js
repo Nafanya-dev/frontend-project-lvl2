@@ -37,19 +37,19 @@ const getTreeDiff = (file1, file2) => {
       ? [...acc, {
         name,
         type: 'deleted',
-        children: valueFile1,
         beenUpdated: true,
+        children: valueFile1,
       }, {
         name,
         type: 'added',
-        children: valueFile2,
         beenUpdated: true,
+        children: valueFile2,
       }]
       : [...acc, {
         name,
         type,
-        children: valueFile1,
         beenUpdated: false,
+        children: valueFile1,
       }];
   }, []);
 };
