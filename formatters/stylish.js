@@ -18,26 +18,24 @@ const stylish = (treeDeep) => {
     .reduce((acc, file) => {
       const key = !file.name ? Object.keys(file)[0] : file.name;
       const indent = ' '.repeat(depth);
-      /* eslint-disable-next-line */
-      let value;
+      const value = [];
       if (Array.isArray(file.children)) {
-        value = `{${getStyle(file.children, depth + 4)}\n${indent}  }`;
+        value[0] = `{${getStyle(file.children, depth + 4)}\n${indent}  }`;
       } else {
-        value = typeof file.children === 'object'
+        value[0] = typeof file.children === 'object'
           ? `{${getDepthFiles({ ...file.children }, depth + 4)}\n${indent}  }`
           : _.cloneDeep(file.children);
       }
-      /* eslint-disable-next-line */
-      let sign;
+      const sign = [];
       if (file.type === 'deleted') {
-        sign = '- ';
+        sign[0] = '- ';
       } else if (file.type === 'added') {
-        sign = '+ ';
+        sign[0] = '+ ';
       } else {
-        sign = '  ';
+        sign[0] = '  ';
       }
-      const correctName = `${sign}${key}`;
-      return `${acc}\n${indent}${correctName}: ${value}`;
+      const correctName = `${sign[0]}${key}`;
+      return `${acc}\n${indent}${correctName}: ${value[0]}`;
     }, '');
   return `{${getStyle(treeDeep)}\n}`;
 };

@@ -6,51 +6,48 @@ const getTreeDiff = (file1, file2) => {
 
   return sortKeys.reduce((acc, key) => {
     const name = key;
-    /* eslint-disable-next-line */
-    let type;
+    const type = [];
     if (_.has(file1, key)) {
       if (_.has(file2, key)) {
-        type = 'general';
+        type[0] = 'general';
       } else {
-        type = 'deleted';
+        type[0] = 'deleted';
       }
     } else {
-      type = 'added';
+      type[0] = 'added';
     }
-    /* eslint-disable-next-line */
-    let valueFile1;
-    /* eslint-disable-next-line */
-    let valueFile2;
-    if (type === 'general') {
+    const valueFile1 = [];
+    const valueFile2 = [];
+    if (type[0] === 'general') {
       if (typeof file1[key] === 'object' && typeof file2[key] === 'object') {
-        valueFile1 = getTreeDiff(file1[key], file2[key]);
+        valueFile1[0] = getTreeDiff(file1[key], file2[key]);
       } else if (file1[key] === file2[key]) {
-        valueFile1 = _.cloneDeep(file1[key]);
+        valueFile1[0] = _.cloneDeep(file1[key]);
       } else {
-        valueFile1 = file1[key] === null ? 'null' : _.cloneDeep(file1[key]);
-        valueFile2 = file2[key] === null ? 'null' : _.cloneDeep(file2[key]);
-        type = 'differ';
+        valueFile1[0] = file1[key] === null ? 'null' : _.cloneDeep(file1[key]);
+        valueFile2[0] = file2[key] === null ? 'null' : _.cloneDeep(file2[key]);
+        type[0] = 'differ';
       }
     } else {
-      valueFile1 = type === 'deleted' ? _.cloneDeep(file1[key]) : _.cloneDeep(file2[key]);
+      valueFile1[0] = type[0] === 'deleted' ? _.cloneDeep(file1[key]) : _.cloneDeep(file2[key]);
     }
-    return type === 'differ'
+    return type[0] === 'differ'
       ? [...acc, {
         name,
         type: 'deleted',
         beenUpdated: true,
-        children: valueFile1,
+        children: valueFile1[0],
       }, {
         name,
         type: 'added',
         beenUpdated: true,
-        children: valueFile2,
+        children: valueFile2[0],
       }]
       : [...acc, {
         name,
-        type,
+        type: type[0],
         beenUpdated: false,
-        children: valueFile1,
+        children: valueFile1[0],
       }];
   }, []);
 };

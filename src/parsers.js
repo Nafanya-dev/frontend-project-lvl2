@@ -1,12 +1,11 @@
 import yaml from 'js-yaml';
 
 export default (data, extension) => {
-  /* eslint-disable-next-line */
-  let result;
+  const result = [];
   if (extension === 'yaml' || extension === 'yml') {
-    result = yaml.load(data);
+    result[0] = yaml.load(data);
   } else if (extension === 'json') {
-    result = JSON.parse(data);
+    result[0] = JSON.parse(data);
   }
-  return result;
+  return result[0];
 };
