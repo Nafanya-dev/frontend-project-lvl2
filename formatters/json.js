@@ -36,6 +36,7 @@ const json = (treeDeep) => {
       }
       return `${acc}{"name":"${file.name}","type":"notChanged","value":${value[0]}}`;
     }, '');
+    /* eslint-disable-next-line */
   return JSON.parse(`[${getStyle(treeDeep)}]`.split('')
     .map((char) => {
       if (char === '}') {
