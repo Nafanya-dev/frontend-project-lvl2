@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import genDiff from '../genDiff.js';
 import getFixturePath from '../src/getFixturePath.js';
+import parsers from '../src/parsers.js';
 
 describe('stylish', () => {
   const jsPathFile1 = getFixturePath('file1.json');
@@ -39,10 +40,10 @@ describe('json', () => {
   const ymlPathFile2 = getFixturePath('file2.yaml');
   const correctJson = readFileSync(getFixturePath('correctJson.json'), 'utf-8');
   test('genDiff_Json', () => {
-    expect(genDiff(jsPathFile1, jsPathFile2, 'json')).toEqual(JSON.parse(correctJson));
+    expect(genDiff(jsPathFile1, jsPathFile2, 'json')).toEqual(parsers(correctJson, 'json'));
   });
 
   test('genDiff_Yaml', () => {
-    expect(genDiff(ymlPathFile1, ymlPathFile2, 'json')).toEqual(JSON.parse(correctJson));
+    expect(genDiff(ymlPathFile1, ymlPathFile2, 'json')).toEqual(parsers(correctJson, 'yaml'));
   });
 });

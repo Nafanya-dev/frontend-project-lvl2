@@ -1,4 +1,5 @@
 import _ from 'lodash';
+import parsers from '../src/parsers.js';
 
 const json = (treeDeep) => {
   const previous = [null];
@@ -36,8 +37,7 @@ const json = (treeDeep) => {
       }
       return `${acc}{"name":"${file.name}","type":"notChanged","value":${value[0]}}`;
     }, '');
-    /* eslint-disable-next-line */
-  return JSON.parse(`[${getStyle(treeDeep)}]`.split('')
+  return parsers(`[${getStyle(treeDeep)}]`.split('')
     .map((char) => {
       if (char === '}') {
         closingBracket[0] = true;
@@ -47,7 +47,7 @@ const json = (treeDeep) => {
       }
       return char;
     })
-    .join(''));
+    .join(''), 'json');
 };
 
 export default json;
