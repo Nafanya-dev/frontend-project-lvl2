@@ -1,1 +1,43 @@
-[{"name":"common","type":"general","value":[{"name":"follow","type":"added","value":false},{"name":"setting1","type":"general","value":"Value 1"},{"name":"setting2","type":"deleted","value":200},{"name":"setting3","type":"deleted","value":true},{"name":"setting3","type":"added","value":null},{"name":"setting4","type":"added","value":"blah blah"},{"name":"setting5","type":"added","value":{"key5":"value5"}},{"name":"setting6","type":"general","value":[{"name":"doge","type":"general","value":[{"name":"wow","type":"deleted","value":""},{"name":"wow","type":"added","value":"so much"}]},{"name":"key","type":"general","value":"value"},{"name":"ops","type":"added","value":"vops"}]}]},{"name":"group1","type":"general","value":[{"name":"baz","type":"deleted","value":"bas"},{"name":"baz","type":"added","value":"bars"},{"name":"foo","type":"general","value":"bar"},{"name":"nest","type":"deleted","value":{"key":"value"}},{"name":"nest","type":"added","value":"str"}]},{"name":"group2","type":"deleted","value":{"abc":12345,"deep":{"id":45}}},{"name":"group3","type":"added","value":{"deep":{"id":{"number":45}},"fee":100500}}]
+{
+    "common": [
+        "general",
+        {
+            "follow": ["added", false],
+            "setting1": ["general", "Value 1"],
+            "setting2": ["deleted", 200],
+            "setting3": ["updated", true, null],
+            "setting4": ["added", "blah blah"],
+            "setting5": ["added", {
+                "key5": "value5"
+                }],
+            "setting6": ["general", {
+                "doge": ["general", {
+                    "wow": ["updated", "", "so much"]
+                    }],
+                "key": ["general", "value"],
+                "ops": ["added", "vops"]
+            }]
+        }
+    ],
+    "group1": ["general", {
+        "baz": ["updated", "bas", "bars"],
+        "foo": ["general", "bar"],
+        "nest": ["updated", {
+            "key": "value"
+        }, "str"]
+    }],
+    "group2": ["deleted", {
+        "abc": 12345,
+        "deep": {
+            "id": 45
+        }
+    }],
+    "group3": ["added", {
+        "deep": {
+            "id": {
+                "number": 45
+            }
+        },
+        "fee": 100500
+    }]
+}
