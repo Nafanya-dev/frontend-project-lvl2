@@ -18,6 +18,7 @@ const stylish = (treeDeep) => {
     .reduce((acc, file) => {
       const key = !file.name ? Object.keys(file)[0] : file.name;
       const indent = ' '.repeat(depth);
+      /* eslint-disable-next-line */
       let value;
       if (Array.isArray(file.children)) {
         value = `{${getStyle(file.children, depth + 4)}\n${indent}  }`;
@@ -26,7 +27,7 @@ const stylish = (treeDeep) => {
           ? `{${getDepthFiles({ ...file.children }, depth + 4)}\n${indent}  }`
           : _.cloneDeep(file.children);
       }
-
+      /* eslint-disable-next-line */
       let sign;
       if (file.type === 'deleted') {
         sign = '- ';

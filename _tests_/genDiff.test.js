@@ -2,27 +2,12 @@ import { readFileSync } from 'fs';
 import genDiff from '../genDiff.js';
 import getFixturePath from '../src/getFixturePath.js';
 
-let jsPathFile1;
-let jsPathFile2;
-
-let ymlPathFile1;
-let ymlPathFile2;
-
-let correctStylish;
-let correctPlain;
-let correctJson;
-
-beforeAll(() => {
-  jsPathFile1 = getFixturePath('file1.json');
-  jsPathFile2 = getFixturePath('file2.json');
-  ymlPathFile1 = getFixturePath('file1.yaml');
-  ymlPathFile2 = getFixturePath('file2.yaml');
-  correctStylish = readFileSync(getFixturePath('correctStylish.json'), 'utf-8');
-  correctPlain = readFileSync(getFixturePath('correctPlain.json'), 'utf-8');
-  correctJson = readFileSync(getFixturePath('correctJson.json'), 'utf-8');
-});
-
 describe('stylish', () => {
+  const jsPathFile1 = getFixturePath('file1.json');
+  const jsPathFile2 = getFixturePath('file2.json');
+  const ymlPathFile1 = getFixturePath('file1.yaml');
+  const ymlPathFile2 = getFixturePath('file2.yaml');
+  const correctStylish = readFileSync(getFixturePath('correctStylish.json'), 'utf-8');
   test('genDiff_Json', () => {
     expect(genDiff(jsPathFile1, jsPathFile2)).toEqual(correctStylish);
   });
@@ -33,6 +18,11 @@ describe('stylish', () => {
 });
 
 describe('plain', () => {
+  const jsPathFile1 = getFixturePath('file1.json');
+  const jsPathFile2 = getFixturePath('file2.json');
+  const ymlPathFile1 = getFixturePath('file1.yaml');
+  const ymlPathFile2 = getFixturePath('file2.yaml');
+  const correctPlain = readFileSync(getFixturePath('correctPlain.json'), 'utf-8');
   test('genDiff_Json', () => {
     expect(genDiff(jsPathFile1, jsPathFile2, 'plain')).toEqual(correctPlain);
   });
@@ -43,6 +33,11 @@ describe('plain', () => {
 });
 
 describe('json', () => {
+  const jsPathFile1 = getFixturePath('file1.json');
+  const jsPathFile2 = getFixturePath('file2.json');
+  const ymlPathFile1 = getFixturePath('file1.yaml');
+  const ymlPathFile2 = getFixturePath('file2.yaml');
+  const correctJson = readFileSync(getFixturePath('correctJson.json'), 'utf-8');
   test('genDiff_Json', () => {
     expect(genDiff(jsPathFile1, jsPathFile2, 'json')).toEqual(correctJson);
   });

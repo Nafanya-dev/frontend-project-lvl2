@@ -1,10 +1,13 @@
 import _ from 'lodash';
 
 const json = (treeDeep) => {
+  /* eslint-disable-next-line */
   let previous = null;
+  /* eslint-disable-next-line */
   let closingBracket = false;
   const getStyle = (tree) => tree
     .reduce((acc, file) => {
+      /* eslint-disable-next-line */
       let value;
       if (file.children === 'null' || typeof file.children === 'number') {
         value = file.children === 'null' ? null : _.cloneDeep(file.children);
@@ -22,6 +25,7 @@ const json = (treeDeep) => {
         return `${acc}{"name":"${file.name}","type":"removed","value":${value}}`;
       } if (file.type === 'added') {
         if (previous !== null) {
+          /* eslint-disable-next-line */
           let oldValue;
           if (previous.children === 'null' || typeof previous.children === 'number') {
             oldValue = previous.children === 'null' ? null : _.cloneDeep(previous.children);

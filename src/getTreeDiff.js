@@ -6,7 +6,7 @@ const getTreeDiff = (file1, file2) => {
 
   return sortKeys.reduce((acc, key) => {
     const name = key;
-
+    /* eslint-disable-next-line */
     let type;
     if (_.has(file1, key)) {
       if (_.has(file2, key)) {
@@ -17,8 +17,9 @@ const getTreeDiff = (file1, file2) => {
     } else {
       type = 'added';
     }
-
+    /* eslint-disable-next-line */
     let valueFile1;
+    /* eslint-disable-next-line */
     let valueFile2;
     if (type === 'general') {
       if (typeof file1[key] === 'object' && typeof file2[key] === 'object') {
