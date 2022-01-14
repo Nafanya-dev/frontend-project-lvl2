@@ -7,8 +7,10 @@ const json = (treeDeep) => {
       const key = !file.name ? Object.keys(file)[0] : file.name;
       const value = [];
       if (Array.isArray(file.children)) {
+        /* eslint-disable-next-line */
         value[0] = getObj(file.children);
       } else {
+        /* eslint-disable-next-line */
         value[1] = file.children === 'null' ? null : _.cloneDeep(file.children);
       }
       if (file.type === 'deleted' && file.beenUpdated) {

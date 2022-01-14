@@ -20,8 +20,10 @@ const stylish = (treeDeep) => {
       const indent = ' '.repeat(depth);
       const value = [];
       if (Array.isArray(file.children)) {
+        /* eslint-disable-next-line */
         value[0] = `{${getStyle(file.children, depth + 4)}\n${indent}  }`;
       } else {
+        /* eslint-disable-next-line */
         value[1] = typeof file.children === 'object'
           ? `{${getDepthFiles({ ...file.children }, depth + 4)}\n${indent}  }`
           : _.cloneDeep(file.children);

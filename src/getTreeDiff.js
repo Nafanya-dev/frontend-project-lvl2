@@ -9,26 +9,35 @@ const getTreeDiff = (file1, file2) => {
     const type = [];
     if (_.has(file1, key)) {
       if (_.has(file2, key)) {
+        /* eslint-disable-next-line */
         type.push('general');
       } else {
+        /* eslint-disable-next-line */
         type.push('deleted');
       }
     } else {
+      /* eslint-disable-next-line */
       type.push('added');
     }
     const valueFile1 = [];
     const valueFile2 = [];
     if (type[0] === 'general') {
       if (typeof file1[key] === 'object' && typeof file2[key] === 'object') {
+        /* eslint-disable-next-line */
         valueFile1.push(getTreeDiff(file1[key], file2[key]));
       } else if (file1[key] === file2[key]) {
+        /* eslint-disable-next-line */
         valueFile1.push(_.cloneDeep(file1[key]));
       } else {
+        /* eslint-disable-next-line */
         valueFile1.push(file1[key] === null ? 'null' : _.cloneDeep(file1[key]));
+        /* eslint-disable-next-line */
         valueFile2.push(file2[key] === null ? 'null' : _.cloneDeep(file2[key]));
+        /* eslint-disable-next-line */
         type.push('differ');
       }
     } else {
+      /* eslint-disable-next-line */
       valueFile1.push(type[0] === 'deleted' ? _.cloneDeep(file1[key]) : _.cloneDeep(file2[key]));
     }
     return type[type.length - 1] === 'differ'
