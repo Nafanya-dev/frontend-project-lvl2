@@ -1,7 +1,6 @@
 import { readFileSync } from 'fs';
 import genDiff from '../genDiff.js';
 import getFixturePath from '../src/getFixturePath.js';
-import parsers from '../src/parsers.js';
 
 describe('stylish', () => {
   const jsPathFile1 = getFixturePath('file1.json');
