@@ -9,29 +9,29 @@ const getTreeDiff = (file1, file2) => {
     const type = [];
     if (_.has(file1, key)) {
       if (_.has(file2, key)) {
-        type[0] = 'general';
+        type.push('general');
       } else {
-        type[0] = 'deleted';
+        type.push('deleted');
       }
     } else {
-      type[0] = 'added';
+      type.push('added');
     }
     const valueFile1 = [];
     const valueFile2 = [];
     if (type[0] === 'general') {
       if (typeof file1[key] === 'object' && typeof file2[key] === 'object') {
-        valueFile1[0] = getTreeDiff(file1[key], file2[key]);
+        valueFile1.push(getTreeDiff(file1[key], file2[key]));
       } else if (file1[key] === file2[key]) {
-        valueFile1[0] = _.cloneDeep(file1[key]);
+        valueFile1.push(_.cloneDeep(file1[key]));
       } else {
-        valueFile1[0] = file1[key] === null ? 'null' : _.cloneDeep(file1[key]);
-        valueFile2[0] = file2[key] === null ? 'null' : _.cloneDeep(file2[key]);
-        type[0] = 'differ';
+        valueFile1.push(file1[key] === null ? 'null' : _.cloneDeep(file1[key]));
+        valueFile2.push(file2[key] === null ? 'null' : _.cloneDeep(file2[key]));
+        type.push('differ');
       }
     } else {
-      valueFile1[0] = type[0] === 'deleted' ? _.cloneDeep(file1[key]) : _.cloneDeep(file2[key]);
+      valueFile1.push(type[0] === 'deleted' ? _.cloneDeep(file1[key]) : _.cloneDeep(file2[key]));
     }
-    return type[0] === 'differ'
+    return type[type.length - 1] === 'differ'
       ? [...acc, {
         name,
         type: 'deleted',

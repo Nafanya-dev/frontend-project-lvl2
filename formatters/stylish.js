@@ -22,20 +22,24 @@ const stylish = (treeDeep) => {
       if (Array.isArray(file.children)) {
         value[0] = `{${getStyle(file.children, depth + 4)}\n${indent}  }`;
       } else {
-        value[0] = typeof file.children === 'object'
+        value[1] = typeof file.children === 'object'
           ? `{${getDepthFiles({ ...file.children }, depth + 4)}\n${indent}  }`
           : _.cloneDeep(file.children);
       }
       const sign = [];
       if (file.type === 'deleted') {
+        /* eslint-disable-next-line */
         sign[0] = '- ';
       } else if (file.type === 'added') {
+        /* eslint-disable-next-line */
         sign[0] = '+ ';
       } else {
+        /* eslint-disable-next-line */
         sign[0] = '  ';
       }
+      const correctValue = Array.isArray(file.children) ? value[0] : value[1];
       const correctName = `${sign[0]}${key}`;
-      return `${acc}\n${indent}${correctName}: ${value[0]}`;
+      return `${acc}\n${indent}${correctName}: ${correctValue}`;
     }, '');
   return `{${getStyle(treeDeep)}\n}`;
 };
