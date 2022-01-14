@@ -5,11 +5,11 @@ const json = (treeDeep) => {
   const getObj = (tree) => tree
     .reduce((acc, file) => {
       const key = !file.name ? Object.keys(file)[0] : file.name;
-      const value = {};
+      const value = [];
       if (Array.isArray(file.children)) {
-        value.one = getObj(file.children);
+        value[0] = getObj(file.children);
       } else {
-        value.one = file.children === 'null' ? null : _.cloneDeep(file.children);
+        value[1] = file.children === 'null' ? null : _.cloneDeep(file.children);
       }
       if (file.type === 'deleted' && file.beenUpdated) {
         previous[0] = _.cloneDeep(file);
@@ -17,9 +17,11 @@ const json = (treeDeep) => {
       } if (file.type === 'added' && file.beenUpdated) {
         const oldValue = _.cloneDeep(previous[0].children);
         previous[0] = null;
-        return { ...acc, [key]: ['updated', oldValue, value.one] };
+        const newValue = Array.isArray(file.children) ? value[0] : value[1];
+        return { ...acc, [key]: ['updated', oldValue, newValue] };
       }
-      return { ...acc, [key]: [file.type, value.one] };
+      const newValue = Array.isArray(file.children) ? value[0] : value[1];
+      return { ...acc, [key]: [file.type, newValue] };
     }, {});
   return JSON.stringify(getObj(treeDeep));
 };
